@@ -6,14 +6,12 @@ import { CreateMenuDto } from './dto/create-menu.dto';
 export class MenuController {
     constructor(private readonly menuService: MenuService) { }
 
-    @Get('seed-db')
-    seed() {
-        return this.menuService.seed();
-    }
-
-    @Get('debug')
-    debug() {
-        return this.menuService.debug();
+    @Get()
+    findAll(@Query('category') category?: string) {
+        if (category) {
+            return this.menuService.findByCategory(category);
+        }
+        return this.menuService.findAll();
     }
 
     @Post()
