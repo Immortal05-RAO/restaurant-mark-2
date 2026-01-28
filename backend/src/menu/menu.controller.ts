@@ -11,6 +11,11 @@ export class MenuController {
         return this.menuService.seed();
     }
 
+    @Get('debug')
+    debug() {
+        return this.menuService.debug();
+    }
+
     @Post()
     create(@Body() createMenuDto: CreateMenuDto) {
         return this.menuService.create(createMenuDto);
