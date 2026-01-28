@@ -6,6 +6,11 @@ import { CreateMenuDto } from './dto/create-menu.dto';
 export class MenuController {
     constructor(private readonly menuService: MenuService) { }
 
+    @Get('seed-db')
+    seed() {
+        return this.menuService.seed();
+    }
+
     @Post()
     create(@Body() createMenuDto: CreateMenuDto) {
         return this.menuService.create(createMenuDto);
@@ -17,11 +22,6 @@ export class MenuController {
             return this.menuService.findByCategory(category);
         }
         return this.menuService.findAll();
-    }
-
-    @Get('seed-db')
-    seed() {
-        return this.menuService.seed();
     }
 }
 
