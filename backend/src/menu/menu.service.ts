@@ -13,8 +13,13 @@ export class MenuService {
         return createdMenu.save();
     }
 
-    async findAll(): Promise<Menu[]> {
-        return this.menuModel.find().exec();
+    async getMenu() {
+        // User reports DB has a single document with 'items' array
+        const menu: any = await this.menuModel.findOne().lean();
+        if (!menu) {
+            return [];
+        }
+        return menu.items || [];
     }
 
     async findByCategory(category: string): Promise<Menu[]> {
