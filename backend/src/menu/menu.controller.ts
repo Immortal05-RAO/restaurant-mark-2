@@ -18,5 +18,10 @@ export class MenuController {
         }
         return this.menuService.findAll();
     }
+
+    @Get('seed-db')
+    seed() {
+        return this.menuService.seed();
+    }
 }
 
