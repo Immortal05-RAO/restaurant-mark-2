@@ -41,4 +41,15 @@ export class MenuService {
         await this.menuModel.insertMany(items);
         return { message: 'Database seeded successfully', count: items.length };
     }
+
+    async debug() {
+        const count = await this.menuModel.countDocuments();
+        const sample = await this.menuModel.findOne().lean();
+        return {
+            message: 'Database Debug Info',
+            count,
+            sample,
+            env_check: process.env.MONGODB_URI ? 'Defined' : 'Missing'
+        };
+    }
 }
